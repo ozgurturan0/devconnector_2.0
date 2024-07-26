@@ -5,9 +5,8 @@ const router = express.Router();
 const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 // bring in normalize to give us a proper url, regardless of what user entered
-const normalize = require('normalize-url');
+const normalizeUrl = require('@esm2cjs/normalize-url').default;
 const checkObjectId = require('../../middleware/checkObjectId');
-
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const Post = require('../../models/Post');
@@ -64,7 +63,7 @@ router.post(
       user: req.user.id,
       website:
         website && website !== ''
-          ? normalize(website, { forceHttps: true })
+          ? normalizeUrl(website, { forceHttps: true })
           : '',
       skills: Array.isArray(skills)
         ? skills
@@ -78,7 +77,7 @@ router.post(
     // normalize social fields to ensure valid url
     for (const [key, value] of Object.entries(socialFields)) {
       if (value && value.length > 0)
-        socialFields[key] = normalize(value, { forceHttps: true });
+        socialFields[key] = normalizeUrl(value, { forceHttps: true });
     }
     // add to profileFields
     profileFields.social = socialFields;
