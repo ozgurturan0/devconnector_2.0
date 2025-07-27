@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://ozgurturan4233:2hyh51mk4WtRb8In@cluster0.qjyupnk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+  "jwtSecret": "2hyh51mk4WtRb8In"
+}
